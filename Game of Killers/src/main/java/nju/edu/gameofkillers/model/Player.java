@@ -15,7 +15,7 @@ public class Player {
 
     public static Player makePlayer (Bundle bundle) {
         String name = bundle.getString(Constants.KEY_NEW_PLAYER_NAME);
-        if (name == null) {
+        if (name == null || name.equals("")) {
             return null;
         }
         return new Player(name);

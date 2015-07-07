@@ -20,15 +20,14 @@
         </GridLayout>
     </ScrollView>
 
-    <com.melnykov.fab.FloatingActionButton
+    <com.getbase.floatingactionbutton.AddFloatingActionButton
             android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/add"
+            fab:fab_plusIconColor="@android:color/white"
             fab:fab_colorNormal="@color/theme"
             fab:fab_colorPressed="@color/theme"
-            fab:fab_colorRipple="@color/theme"/>
+            android:layout_marginBottom="16dp"/>
 
 </FrameLayout>
