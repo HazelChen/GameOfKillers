@@ -7,7 +7,7 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".activities.AddPlayerActivity">
 
-    <ScrollView
+    <com.melnykov.fab.ObservableScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -16,10 +16,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <ImageView
+            <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/defaultpic"/>
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/defaultpic"/>
+
+                <com.melnykov.fab.FloatingActionButton
+                        android:id="@+id/button_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/add"
+                        fab:fab_colorNormal="@color/theme"
+                        fab:fab_colorPressed="@color/theme"
+                        fab:fab_colorRipple="@color/theme"/>
+
+            </FrameLayout>
 
             <EditText
                     android:id="@+id/edittext_newplayer_name"
@@ -29,6 +46,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.melnykov.fab.ObservableScrollView>
 
 </RelativeLayout>

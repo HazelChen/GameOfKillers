@@ -46,8 +46,10 @@ public class MainActivity extends Activity {
         if ((requestCode == Constants.CODE_NEW_PLAYER) &&
                 (resultCode == Constants.CODE_NEW_PLAYER)) {
             Player player = Player.makePlayer(data.getExtras());
-            GameController.addPlayer(player);
-            refreshCardViews();
+            if (player != null) {
+                GameController.addPlayer(player);
+                refreshCardViews();
+            }
         }
 
     }

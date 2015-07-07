@@ -24,13 +24,16 @@
                 android:src="@drawable/defaultpic"/>
         <TextView
                 android:id="@+id/card_textview_name"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                android:singleLine="false"
+                android:maxLines="2"
                 android:textColor="@android:color/white"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/header_image"/>
+                android:layout_below="@id/header_image"
+                android:gravity="center_horizontal"/>
 
     </RelativeLayout>
 
