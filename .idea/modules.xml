@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Game of Killers/Game of Killers.iml" filepath="$PROJECT_DIR$/Game of Killers/Game of Killers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GameofKillers.iml" filepath="$PROJECT_DIR$/GameofKillers.iml" />
+    </modules>
+  </component>
+</project>

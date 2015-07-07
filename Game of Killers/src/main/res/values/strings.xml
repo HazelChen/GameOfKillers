@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Game of Killers</string>
+    <string name="app_name_chinese">杀人游戏</string>
+    <string name="title_activity_add_player">添加新玩家</string>
+    <string name="newplayer_edittext_hint">请输入玩家名字</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
