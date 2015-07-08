@@ -10,4 +10,9 @@
         <item name="android:displayOptions">showTitle</item>
     </style>
 
+    <style name="FloatingMenu">
+        <item name="android:background">@drawable/camera</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
