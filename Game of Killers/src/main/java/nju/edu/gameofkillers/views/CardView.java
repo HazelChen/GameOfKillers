@@ -1,6 +1,8 @@
 package nju.edu.gameofkillers.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -29,6 +31,7 @@ public class CardView extends FrameLayout{
             return;
         }
         ImageView headerImageView = (ImageView) findViewById(R.id.card_imageview_header);
-        headerImageView.setImageBitmap(player.getHeader());
+        Bitmap bitmap = BitmapFactory.decodeFile(player.getHeaderFile());
+        headerImageView.setImageBitmap(bitmap);
     }
 }

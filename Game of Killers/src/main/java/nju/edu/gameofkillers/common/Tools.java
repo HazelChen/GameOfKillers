@@ -6,10 +6,7 @@ package nju.edu.gameofkillers.common;
 public class Tools {
 
     public static boolean isEmptyString(String s) {
-        if (s == null || s.equals("")) {
-            return true;
-        }
-
-        return false;
+        return (s == null || s.equals(""));
     }
+
 }

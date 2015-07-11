@@ -6,44 +6,40 @@ import android.os.Bundle;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.common.Tools;
 
+import java.io.File;
+
 /**
  * Created by hazel on 2015-07-06.
  */
 public class Player {
     private String name;
-    private Bitmap header;
+    private String headerFile;
 
-    public Player(String name, Bitmap bitmap) {
+    public Player(String name, String headerFile) {
         this.name = name;
-        this.header = bitmap;
+        this.headerFile = headerFile;
     }
 
     public static Player makePlayer (Bundle bundle) {
         String name = bundle.getString(Constants.KEY_NEW_PLAYER_NAME);
-        byte[] headerByteArray = bundle.getByteArray(Constants.KEY_NEW_PLAYER_HEADER);
+        String headerFile = bundle.getString(Constants.KEY_NEW_PLAYER_HEADER_FILE);
 
-        if (Tools.isEmptyString(name) && headerByteArray == null) {
+        if (Tools.isEmptyString(name) && Tools.isEmptyString(headerFile)) {
             return null;
         }
 
-        Bitmap header = null;
-        if (headerByteArray != null) {
-            header = BitmapFactory.decodeByteArray(
-                    headerByteArray, 0, headerByteArray.length);
-        }
-
-        return new Player(name, header);
+        return new Player(name, headerFile);
     }
 
     public String getName() {
         return name;
     }
 
-    public Bitmap getHeader() {
-        return header;
+    public String getHeaderFile() {
+        return headerFile;
     }
 
     public boolean hasHeader() {
-        return header != null;
+        return (!Tools.isEmptyString(headerFile));
     }
 }
