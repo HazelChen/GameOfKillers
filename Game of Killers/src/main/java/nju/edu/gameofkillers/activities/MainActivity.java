@@ -3,15 +3,17 @@ package nju.edu.gameofkillers.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
+import nju.edu.gameofkillers.controller.CommonRuler;
 import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.model.Player;
 import nju.edu.gameofkillers.views.CardView;
@@ -27,14 +29,35 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         addActionListeners();
+
+        refreshCardViews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem item = menu.findItem(R.id.action_item_likeme);
-        item.setActionView(R.layout.actionbar_likeme);
+        MenuItem item = menu.findItem(R.id.menu_item_go);
+        item.setActionView(R.layout.actionbar_go);
+
+        ImageView goButton = (ImageView) item.getActionView()
+                .findViewById(R.id.imagebutton_go);
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (GameController.getPlayersNum() < CommonRuler.MIN_PLAYER_NUMBERS) {
+                    String toast = getString(R.string.player_number_error1) +
+                            CommonRuler.MIN_PLAYER_NUMBERS +
+                            getString(R.string.player_number_error2);
+                    Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
+                Intent intent = new Intent(MainActivity.this,
+                        GameSettingActivity.class);
+                startActivity(intent);
+            }
+        });
         return true;
     }
 
@@ -78,10 +101,8 @@ public class MainActivity extends Activity {
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
                         firstTouchX = x;
                         originX = cardView.getX();
-                        Log.d("originX", String.valueOf(originX));
                     } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
                         float currentX = (x - firstTouchX) + originX;
-                        Log.d("currentX", String.valueOf(currentX));
                         cardView.setX(currentX);
 
                         float alpha = 1 - Math.abs(currentX - originX) / cardView.getWidth();

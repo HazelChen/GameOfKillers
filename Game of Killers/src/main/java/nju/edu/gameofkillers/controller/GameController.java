@@ -26,4 +26,8 @@ public class GameController {
     public static void removePlayer(Player player) {
         players.removePlayer(player);
     }
+
+    public static int getPlayersNum() {
+        return players.getPlayersNum();
+    }
 }

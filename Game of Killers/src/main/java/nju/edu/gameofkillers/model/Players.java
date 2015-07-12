@@ -24,4 +24,8 @@ public class Players {
     public void removePlayer(Player player) {
         players.remove(player);
     }
+
+    public int getPlayersNum() {
+        return players.size();
+    }
 }

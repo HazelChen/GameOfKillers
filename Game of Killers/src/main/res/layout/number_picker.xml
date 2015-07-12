@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+        <ImageButton
+                android:id="@+id/imagebutton_numberpicker_add"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/add"
+                android:layout_marginTop="10dp"
+                />
+        <EditText
+                android:id="@+id/edittext_numberpicker_number"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textCursorDrawable="@color/theme"
+                android:inputType="number"
+                android:gravity="center_horizontal"
+                />
+        <ImageButton
+                android:id="@+id/imagebutton_numberpicker_minus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/minus"
+                android:layout_marginTop="10dp"
+                />
+
+</LinearLayout>

@@ -22,6 +22,10 @@
             android:name=".activities.AddPlayerActivity"
             android:label="@string/title_activity_add_player" >
         </activity>
+        <activity
+            android:name=".activities.GameSettingActivity"
+            android:label="@string/title_activity_game_setting" >
+        </activity>
     </application>
 
 </manifest>
