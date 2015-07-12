@@ -19,8 +19,8 @@
 
         <ImageView
                 android:id="@+id/card_imageview_header"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/defaultpic"/>
         <TextView
                 android:id="@+id/card_textview_name"
