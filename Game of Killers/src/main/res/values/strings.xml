@@ -4,6 +4,8 @@
     <string name="title_activity_add_player">添加新玩家</string>
     <string name="title_activity_game_setting">游戏设置</string>
     <string name="newplayer_edittext_hint">请输入玩家名字</string>
+    <string name="title_activity_view_idnetity">查看身份</string>
+    <string name="title_activity_show_identity">查看身份</string>
 
     <string name="player_number_error1">请至少添加</string>
     <string name="player_number_error2">名玩家</string>
@@ -14,5 +16,13 @@
     <string name="killer_number_hint">杀手数量:</string>
     <string name="police_number_hint">警察数量:</string>
     <string name="civilian_number_hint">平民数量:</string>
+
+    <string name="button_after_view">看好了</string>
+    <string name="after_view_hint">记住身份后请点击以上按钮，并将手机传给下一个玩家。</string>
+    <string name="back_pressed_view_identity">不可以回退查看别人的身份哦</string>
+
+    <string name="identity_killer">杀手</string>
+    <string name="identity_police">警察</string>
+    <string name="identity_civilian">平民</string>
 
 </resources>

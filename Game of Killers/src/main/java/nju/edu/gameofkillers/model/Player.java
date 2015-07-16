@@ -1,12 +1,8 @@
 package nju.edu.gameofkillers.model;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import nju.edu.gameofkillers.common.Constants;
-import nju.edu.gameofkillers.common.Tools;
-
-import java.io.File;
+import nju.edu.gameofkillers.controller.Tools;
 
 /**
  * Created by hazel on 2015-07-06.
@@ -14,6 +10,7 @@ import java.io.File;
 public class Player {
     private String name;
     private String headerFile;
+    private Identity identity;
 
     public Player(String name, String headerFile) {
         this.name = name;
@@ -41,5 +38,13 @@ public class Player {
 
     public boolean hasHeader() {
         return (!Tools.isEmptyString(headerFile));
+    }
+
+    public void setIdentity(Identity identity) {
+        this.identity = identity;
+    }
+
+    public Identity getIdentity() {
+        return identity;
     }
 }

@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import nju.edu.gameofkillers.R;
+import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
 import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.views.NumberPickerView;
 
 public class GameSettingActivity extends Activity {
-    private CommonRuler commonRuler = new CommonRuler();
+    private CommonRuler commonRuler;
 
     private NumberPickerView killerNumberPicker;
     private NumberPickerView policeNumberPicker;
@@ -33,7 +34,7 @@ public class GameSettingActivity extends Activity {
                 GameController.getPlayersNum() +
                 getString(R.string.player_number_show2));
 
-        commonRuler.refresh();
+        commonRuler = new CommonRuler();
         killerNumberPicker =
                 (NumberPickerView) findViewById(R.id.numberpicker_killernum);
         killerNumberPicker.init(commonRuler.getKillersNum());
@@ -70,10 +71,13 @@ public class GameSettingActivity extends Activity {
                     return;
                 }
 
-                //todo
-//                Intent intent = new Intent(MainActivity.this,
-//                        GameSettingActivity.class);
-//                startActivity(intent);
+                CommonRuler commonRuler = new CommonRuler(killersNum, policeNum, civilianNum);
+                GameController.arrangeIdentity(commonRuler);
+
+                Intent intent = new Intent(GameSettingActivity.this,
+                        ViewIdnetityActivity.class);
+                intent.putExtra(Constants.KEY_PLAYER_INDEX, 0);
+                startActivity(intent);
             }
         });
         return true;

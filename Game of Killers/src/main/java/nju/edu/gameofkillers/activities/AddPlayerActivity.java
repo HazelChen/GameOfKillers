@@ -9,19 +9,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
-import nju.edu.gameofkillers.common.Tools;
-import nju.edu.gameofkillers.model.Player;
+import nju.edu.gameofkillers.controller.ImageDecoder;
+import nju.edu.gameofkillers.controller.Tools;
 
 import java.io.*;
 
@@ -43,7 +39,6 @@ public class AddPlayerActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add_player, menu);
         return true;
     }
@@ -74,20 +69,19 @@ public class AddPlayerActivity extends Activity {
 
         if (requestCode == Constants.CODE_NEW_PLAYER_PIC) {
             Uri uri = data.getData();
-            headerFilePath = getImageFilePath(uri);
+            headerFilePath = Tools.getImageFilePath(this, uri);
+        }
+        //If request code == CODE_NEW_CAMERA, we will do nothing
+
+        if (headerFilePath == null) {
+            return;
         }
 
-        Bitmap header = null;
-        try {
-            header = BitmapFactory.decodeFile(headerFilePath);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        ImageView imageView = (ImageView) findViewById(R.id.imageview_header);
+        Bitmap header = ImageDecoder.decodeWithCompression(headerFilePath,
+                imageView.getWidth(), imageView.getHeight());
+        imageView.setImageBitmap(header);
 
-        if (header != null) {
-            ImageView imageView = (ImageView) findViewById(R.id.imageview_header);
-            imageView.setImageBitmap(header);
-        }
     }
 
     private void addActionListeners() {
@@ -136,31 +130,5 @@ public class AddPlayerActivity extends Activity {
         return headerFile;
     }
 
-    private String getImageFilePath(Uri uri) {
-        if (null == uri) {
-            return null;
-        }
-
-        final String scheme = uri.getScheme();
-        String data = null;
-        if (scheme == null) {
-            data = uri.getPath();
-        } else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
-            data = uri.getPath();
-        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
-            Cursor cursor = getContentResolver()
-                    .query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
-            if (null != cursor) {
-                if (cursor.moveToFirst()) {
-                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                    if (index > -1) {
-                        data = cursor.getString(index);
-                    }
-                }
-                cursor.close();
-            }
-        }
-        return data;
-    }
 
 }

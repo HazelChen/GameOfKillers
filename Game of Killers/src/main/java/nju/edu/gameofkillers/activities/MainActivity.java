@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
         List<Player> players = GameController.getPlayers();
 
         for (Player player : players) {
-            final CardView cardView = new CardView(this, player);
+            final CardView cardView = new CardView(this);
 
             cardView.setOnTouchListener(new View.OnTouchListener() {
                 private float firstTouchX;
@@ -121,6 +121,7 @@ public class MainActivity extends Activity {
                 }
             });
             cardGridLayout.addView(cardView);
+            cardView.init(player);
         }
     }
 

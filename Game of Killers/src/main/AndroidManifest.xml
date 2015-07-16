@@ -26,6 +26,14 @@
             android:name=".activities.GameSettingActivity"
             android:label="@string/title_activity_game_setting" >
         </activity>
+        <activity
+            android:name=".activities.ViewIdnetityActivity"
+            android:label="@string/title_activity_view_idnetity" >
+        </activity>
+        <activity
+            android:name=".activities.ShowIdentityActivity"
+            android:label="@string/title_activity_show_identity" >
+        </activity>
     </application>
 
 </manifest>

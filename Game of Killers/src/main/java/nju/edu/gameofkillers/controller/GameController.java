@@ -1,8 +1,10 @@
 package nju.edu.gameofkillers.controller;
 
+import nju.edu.gameofkillers.model.Identity;
 import nju.edu.gameofkillers.model.Player;
 import nju.edu.gameofkillers.model.Players;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,5 +31,15 @@ public class GameController {
 
     public static int getPlayersNum() {
         return players.getPlayersNum();
+    }
+
+    public static Player getPlayer(int index) {
+        return players.getPlayer(index);
+    }
+
+    public static void arrangeIdentity(CommonRuler commonRuler) {
+        List<Identity> identities = commonRuler.generateIdentityList();
+        Collections.shuffle(identities);
+        players.setIdentity(identities);
     }
 }

@@ -28,4 +28,14 @@ public class Players {
     public int getPlayersNum() {
         return players.size();
     }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
+    public void setIdentity(List<Identity> identities) {
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).setIdentity(identities.get(i));
+        }
+    }
 }

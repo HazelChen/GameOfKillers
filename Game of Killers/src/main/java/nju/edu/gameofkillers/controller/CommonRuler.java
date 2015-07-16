@@ -1,5 +1,10 @@
 package nju.edu.gameofkillers.controller;
 
+import nju.edu.gameofkillers.model.Identity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * We can get how many killers, polices, civilians in common rule.
  * Created by hazel on 2015-07-12.
@@ -17,6 +22,29 @@ public class CommonRuler {
 
     public CommonRuler(int playersNum) {
         calculateIdentitiesNum(playersNum);
+    }
+
+    public CommonRuler(int killerNum, int policesNum, int civiliansNum) {
+        this.killersNum = killerNum;
+        this.policesNum = policesNum;
+        this.civiliansNum = civiliansNum;
+    }
+
+    public List<Identity> generateIdentityList() {
+        List<Identity> identities = new ArrayList<>();
+
+        int i = 0;
+        for (; i < killersNum; i++) {
+            identities.add(Identity.KILLER);
+        }
+        for (; i < policesNum + killersNum; i++) {
+            identities.add(Identity.POLICE);
+        }
+        for (; i < GameController.getPlayersNum(); i++) {
+            identities.add(Identity.CIVILIAN);
+        }
+
+        return identities;
     }
 
     public void refresh() {
