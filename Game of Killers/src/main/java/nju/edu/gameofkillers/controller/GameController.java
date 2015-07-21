@@ -17,10 +17,6 @@ public class GameController {
         players.addPlayer(player);
     }
 
-    public static Player getLastAddedPlayer() {
-        return players.getLast();
-    }
-
     public static List<Player> getPlayers() {
         return players.getPlayers();
     }

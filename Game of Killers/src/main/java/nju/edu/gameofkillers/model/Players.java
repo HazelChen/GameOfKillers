@@ -13,10 +13,6 @@ public class Players {
         players.add(player);
     }
 
-    public Player getLast() {
-        return players.get(players.size() - 1);
-    }
-
     public List<Player> getPlayers() {
         return players;
     }

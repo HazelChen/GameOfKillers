@@ -11,4 +11,6 @@ public class Constants {
     public static final String KEY_NEW_PLAYER_NAME = "new_player_name";
     public static final String KEY_NEW_PLAYER_HEADER_FILE = "new_player_header_file";
     public static final String KEY_PLAYER_INDEX = "player_index";
+
+    public static final int ID_DEAD_IMAGEVIEW = 3;
 }

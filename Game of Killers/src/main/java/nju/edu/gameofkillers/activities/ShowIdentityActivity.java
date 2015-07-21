@@ -40,6 +40,10 @@ public class ShowIdentityActivity extends Activity {
                             ViewIdnetityActivity.class);
                     intent.putExtra(Constants.KEY_PLAYER_INDEX, nextPlayerIndex);
                     startActivity(intent);
+                } else {
+                    Intent intent = new Intent(ShowIdentityActivity.this,
+                            BackToJudgeActivity.class);
+                    startActivity(intent);
                 }
             }
         });

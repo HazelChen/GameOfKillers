@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -33,6 +33,14 @@
         <activity
             android:name=".activities.ShowIdentityActivity"
             android:label="@string/title_activity_show_identity" >
+        </activity>
+        <activity
+            android:name=".activities.GameMainActivity"
+            android:label="@string/title_activity_game_main" >
+        </activity>
+        <activity
+            android:name=".activities.BackToJudgeActivity"
+            android:label="@string/title_activity_back_to_judge" >
         </activity>
     </application>
 

@@ -24,7 +24,7 @@
             android:text="@string/button_after_view"
             android:textSize="40sp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/card_background"
+            android:background="@drawable/button_background"
             android:layout_marginTop="40dp"
             android:textColor="@android:color/white"/>
 
@@ -35,7 +35,5 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:textSize="20sp"/>
-
-
 
 </LinearLayout>

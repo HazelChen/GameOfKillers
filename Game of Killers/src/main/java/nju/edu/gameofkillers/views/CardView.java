@@ -5,12 +5,17 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.controller.ImageDecoder;
+import nju.edu.gameofkillers.controller.Tools;
+import nju.edu.gameofkillers.model.Identity;
 import nju.edu.gameofkillers.model.Player;
+
+import java.util.ResourceBundle;
 
 /**
  * Created by hazel on 2015-07-06.
@@ -51,8 +56,29 @@ public class CardView extends FrameLayout {
         headerImageView.setImageBitmap(bitmap);
     }
 
+    public void initWithIdentity(Player player, Context context) {
+        init(player);
+
+        Identity identity = player.getIdentity();
+        String identityString = Tools.getIdentityName(context, identity);
+
+        TextView textView = (TextView) findViewById(R.id.card_textview_identity);
+        textView.setVisibility(VISIBLE);
+        textView.setText(identityString);
+    }
+
     public Player getPlayer() {
         return player;
+    }
+
+    public int getShouldWidth() {
+        View backgroundImageView = findViewById(R.id.imageview_card_background);
+        return backgroundImageView.getLayoutParams().width;
+    }
+
+    public int getShouldHeight() {
+        View backgroundImageView = findViewById(R.id.imageview_card_background);
+        return backgroundImageView.getLayoutParams().height;
     }
 
 }

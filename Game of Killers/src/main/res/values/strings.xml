@@ -6,6 +6,8 @@
     <string name="newplayer_edittext_hint">请输入玩家名字</string>
     <string name="title_activity_view_idnetity">查看身份</string>
     <string name="title_activity_show_identity">查看身份</string>
+    <string name="title_activity_game_main">法官助手</string>
+    <string name="title_activity_back_to_judge">请将手机交给法官</string>
 
     <string name="player_number_error1">请至少添加</string>
     <string name="player_number_error2">名玩家</string>
@@ -24,5 +26,21 @@
     <string name="identity_killer">杀手</string>
     <string name="identity_police">警察</string>
     <string name="identity_civilian">平民</string>
+
+    <string name="judge_button_text">开始游戏</string>
+
+    <string name="game_hint_title"><b>法官提示词:</b></string>
+    <string name="game_hint_before_game">(点击显示下一条)</string>
+    <string-array name="game_hint">
+        <item>天黑请闭眼……</item>
+        <item>杀手请睁眼……</item>
+        <item>杀手请杀人……</item>
+        <item>杀手请闭眼……</item>
+        <item>警察请睁眼……</item>
+        <item>警察请选择一个人验明身份……</item>
+        <item>警察请闭眼……</item>
+        <item>天亮了……</item>
+    </string-array>
+    <string name="game_kill_hint">点击头像可将玩家标记为死亡</string>
 
 </resources>

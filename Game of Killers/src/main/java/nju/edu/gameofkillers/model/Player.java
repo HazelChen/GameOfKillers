@@ -12,6 +12,8 @@ public class Player {
     private String headerFile;
     private Identity identity;
 
+    private boolean isDead;
+
     public Player(String name, String headerFile) {
         this.name = name;
         this.headerFile = headerFile;
@@ -46,5 +48,13 @@ public class Player {
 
     public Identity getIdentity() {
         return identity;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setIsDead(boolean isDead) {
+        this.isDead = isDead;
     }
 }
