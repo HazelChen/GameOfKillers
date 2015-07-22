@@ -9,7 +9,7 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/likeme"
+            android:src="@drawable/go"
         />
 
 </RelativeLayout>

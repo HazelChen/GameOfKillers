@@ -32,6 +32,7 @@ public class AddPlayerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_player);
 
+        //To show left ¡û sign
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addActionListeners();
