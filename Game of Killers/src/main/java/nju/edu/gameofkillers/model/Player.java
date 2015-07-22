@@ -57,4 +57,12 @@ public class Player {
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
     }
+
+    public boolean isKiller() {
+        return identity == Identity.KILLER;
+    }
+
+    public boolean isGoodMan() {
+        return !isKiller();
+    }
 }

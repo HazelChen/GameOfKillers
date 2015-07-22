@@ -1,5 +1,6 @@
 package nju.edu.gameofkillers.controller;
 
+import nju.edu.gameofkillers.model.GameResult;
 import nju.edu.gameofkillers.model.Identity;
 import nju.edu.gameofkillers.model.Player;
 import nju.edu.gameofkillers.model.Players;
@@ -37,5 +38,19 @@ public class GameController {
         List<Identity> identities = commonRuler.generateIdentityList();
         Collections.shuffle(identities);
         players.setIdentity(identities);
+    }
+
+    public static GameResult getResult() {
+        if (players.allKillersDead()) {
+            return GameResult.CIVILIAN_WIN;
+        } else if (players.allGoodMenDead()) {
+            return GameResult.KILLER_WIN;
+        } else {
+            return GameResult.ING;
+        }
+    }
+
+    public static void allAlive() {
+        players.allAlive();
     }
 }

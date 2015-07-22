@@ -34,4 +34,28 @@ public class Players {
             players.get(i).setIdentity(identities.get(i));
         }
     }
+
+    public boolean allKillersDead() {
+        for (Player player : players) {
+            if (player.isKiller() && !player.isDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean allGoodMenDead() {
+        for (Player player : players) {
+            if (player.isGoodMan() && !player.isDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void allAlive() {
+        for (Player player : players) {
+            player.setIsDead(false);
+        }
+    }
 }

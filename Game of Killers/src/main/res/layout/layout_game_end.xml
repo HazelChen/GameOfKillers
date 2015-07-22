@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#af000000"
+                android:id="@+id/relativelayout_end">
+
+    <LinearLayout
+            android:id="@+id/linearlayout_end_winner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+        <TextView
+                android:id="@+id/textview_end_winner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="70sp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_win"
+                android:textSize="70sp"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/textview_end_game_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_game_end"
+            android:textSize="50sp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/linearlayout_end_winner"
+            android:layout_marginBottom="30dp"/>
+
+    <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linearlayout_end_winner"
+            android:text="重新开始"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_background"
+            android:textSize="25sp"
+            android:id="@+id/button_end_restart"/>
+
+</RelativeLayout>
