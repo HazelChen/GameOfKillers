@@ -50,36 +50,6 @@ public class GameSettingActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_game_setting, menu);
-
-        MenuItem item = menu.findItem(R.id.menu_item_go);
-        item.setActionView(R.layout.actionbar_go);
-
-        ImageView goButton = (ImageView) item.getActionView()
-                .findViewById(R.id.imagebutton_go);
-        goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int killersNum = killerNumberPicker.getNumber();
-                int policeNum = policeNumberPicker.getNumber();
-                int civilianNum = civilianNumberPicker.getNumber();
-
-                if (killersNum + policeNum + civilianNum !=
-                        GameController.getPlayersNum()) {
-                    String toast = getString(R.string.identity_number_error);
-                    Toast.makeText(GameSettingActivity.this, toast, Toast.LENGTH_SHORT)
-                            .show();
-                    return;
-                }
-
-                CommonRuler commonRuler = new CommonRuler(killersNum, policeNum, civilianNum);
-                GameController.arrangeIdentity(commonRuler);
-
-                Intent intent = new Intent(GameSettingActivity.this,
-                        ViewIdnetityActivity.class);
-                intent.putExtra(Constants.KEY_PLAYER_INDEX, 0);
-                startActivity(intent);
-            }
-        });
         return true;
     }
 
@@ -90,8 +60,28 @@ public class GameSettingActivity extends Activity {
         if (id == android.R.id.home) {
             onBackPressed();
             return true;
+        } else if (id == R.id.menu_item_go) {
+            int killersNum = killerNumberPicker.getNumber();
+            int policeNum = policeNumberPicker.getNumber();
+            int civilianNum = civilianNumberPicker.getNumber();
+
+            if (killersNum + policeNum + civilianNum !=
+                    GameController.getPlayersNum()) {
+                String toast = getString(R.string.identity_number_error);
+                Toast.makeText(GameSettingActivity.this, toast, Toast.LENGTH_SHORT)
+                        .show();
+                return true;
+            }
+
+            CommonRuler commonRuler = new CommonRuler(killersNum, policeNum, civilianNum);
+            GameController.arrangeIdentity(commonRuler);
+
+            Intent intent = new Intent(GameSettingActivity.this,
+                    ViewIdnetityActivity.class);
+            intent.putExtra(Constants.KEY_PLAYER_INDEX, 0);
+            startActivity(intent);
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }

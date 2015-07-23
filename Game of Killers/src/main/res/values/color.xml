@@ -2,7 +2,9 @@
 <resources>
     <color name="theme">#2196F3</color>
     
+    <color name="theme50">#E3F2FD</color>
     <color name="theme600">#1E88E5</color>
     <color name="theme700">#1976D2</color>
+    <color name="theme900">#0D47A1</color>
 
 </resources>

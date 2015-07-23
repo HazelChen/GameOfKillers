@@ -1,13 +1,16 @@
 package nju.edu.gameofkillers.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
@@ -16,11 +19,14 @@ import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.model.Player;
 import nju.edu.gameofkillers.views.CardView;
 import android.support.v7.widget.Toolbar;
+import nju.edu.gameofkillers.views.DrawerListAdapter;
 
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +42,18 @@ public class MainActivity extends AppCompatActivity {
         initDrawer();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void initToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.hamburger_menu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override
@@ -49,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         int id = item.getItemId();
 
         if (id == R.id.menu_item_go) {
@@ -82,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
     }
 
     private void refreshCardViews() {
@@ -142,11 +167,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDrawer() {
+        //Init drawer list adapter
         String[] drawerTexts = getResources().getStringArray(R.array.drawer_text);
+        TypedArray drawerIconsTypedArray = getResources().obtainTypedArray(R.array.drawer_icons);
+        int[] drawIcons = new int[drawerTexts.length];
+        for (int i = 0; i < drawIcons.length; i++) {
+            drawIcons[i] = drawerIconsTypedArray.getResourceId(i, -1);
+        }
+        drawerIconsTypedArray.recycle();
 
+        ListAdapter listAdapter = new DrawerListAdapter(this, drawerTexts, drawIcons);
         ListView drawerListView = (ListView) findViewById(R.id.listview_main_left_drawer);
-        drawerListView.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, drawerTexts));
+        drawerListView.setAdapter(listAdapter);
+
+        //Add drawer header
+        View drawerHeader = getLayoutInflater().inflate(R.layout.drawer_header, null);
+        drawerListView.addHeaderView(drawerHeader);
+
+        //Init drawerListener
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_main);
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.theme900));
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+                R.string.app_name, R.string.app_name) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        drawerToggle.setHomeAsUpIndicator(R.drawable.hamburger_menu);
     }
 
 }
