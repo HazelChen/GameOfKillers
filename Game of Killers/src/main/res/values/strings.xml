@@ -8,6 +8,7 @@
     <string name="title_activity_show_identity">查看身份</string>
     <string name="title_activity_game_main">法官助手</string>
     <string name="title_activity_back_to_judge">请将手机交给法官</string>
+    <string name="title_activity_feedback">有话要说</string>
 
     <string-array name="drawer_text">
         <item>杀人游戏</item>
@@ -56,8 +57,11 @@
 
     <string name="end_game_end">游戏结束</string>
     <string name="end_win">获胜</string>
-    <string name="title_activity_">Ac</string>
+
+    <string name="feedback_textview">有话要对开发者说：</string>
+    <string name="feedback_edittext_contact">跪求留个联系方式</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
 </resources>

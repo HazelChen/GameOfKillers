@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.*;
+import com.umeng.fb.FeedbackAgent;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
@@ -167,24 +167,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDrawer() {
-        //Init drawer list adapter
-        String[] drawerTexts = getResources().getStringArray(R.array.drawer_text);
-        TypedArray drawerIconsTypedArray = getResources().obtainTypedArray(R.array.drawer_icons);
-        int[] drawIcons = new int[drawerTexts.length];
-        for (int i = 0; i < drawIcons.length; i++) {
-            drawIcons[i] = drawerIconsTypedArray.getResourceId(i, -1);
-        }
-        drawerIconsTypedArray.recycle();
-
-        ListAdapter listAdapter = new DrawerListAdapter(this, drawerTexts, drawIcons);
         ListView drawerListView = (ListView) findViewById(R.id.listview_main_left_drawer);
-        drawerListView.setAdapter(listAdapter);
 
-        //Add drawer header
+        initDrawerListAdapter(drawerListView);
+
+        //Init drawer header
         View drawerHeader = getLayoutInflater().inflate(R.layout.drawer_header, null);
         drawerListView.addHeaderView(drawerHeader);
 
-        //Init drawerListener
+        addDrawerListListener(drawerListView);
+
+        drawerListView.setItemChecked(1, true);
+
+        initDrawerLayout();
+    }
+
+    private void initDrawerLayout() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout_main);
         drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.theme900));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
@@ -200,6 +198,32 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         drawerToggle.setHomeAsUpIndicator(R.drawable.hamburger_menu);
+    }
+
+    private void initDrawerListAdapter(ListView drawerListView) {
+        String[] drawerTexts = getResources().getStringArray(R.array.drawer_text);
+        TypedArray drawerIconsTypedArray = getResources().obtainTypedArray(R.array.drawer_icons);
+        int[] drawIcons = new int[drawerTexts.length];
+        for (int i = 0; i < drawIcons.length; i++) {
+            drawIcons[i] = drawerIconsTypedArray.getResourceId(i, -1);
+        }
+        drawerIconsTypedArray.recycle();
+
+        ListAdapter listAdapter = new DrawerListAdapter(this, drawerTexts, drawIcons);
+
+        drawerListView.setAdapter(listAdapter);
+    }
+
+    private void addDrawerListListener(ListView drawerListView) {
+        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 2) {
+                    Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
 }
