@@ -5,38 +5,36 @@
                 android:background="#c8000000"
                 android:id="@+id/relativelayout_end">
 
-    <LinearLayout
-            android:id="@+id/linearlayout_end_winner"
+    <LinearLayout android:id="@+id/linearlayout_end_winner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true">
-        <TextView
-                android:id="@+id/textview_end_winner"
+
+        <TextView android:id="@+id/textview_end_winner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="70sp"
-                />
-        <TextView
-                android:layout_width="wrap_content"
+                android:textColor="@android:color/white" />
+        <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/end_win"
-                android:textSize="70sp"/>
+                android:textSize="70sp"
+                android:textColor="@android:color/white"/>
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/textview_end_game_end"
+    <TextView android:id="@+id/textview_end_game_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/end_game_end"
             android:textSize="50sp"
             android:layout_centerHorizontal="true"
             android:layout_above="@id/linearlayout_end_winner"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="30dp"
+            android:textColor="@android:color/white"/>
 
-    <Button
-            android:layout_width="150dp"
+    <Button android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/linearlayout_end_winner"

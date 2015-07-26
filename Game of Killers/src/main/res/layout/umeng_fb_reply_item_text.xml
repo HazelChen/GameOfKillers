@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <View
+            android:id="@+id/umeng_fb_reply_item_view_tag"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/umeng_fb_lightblue"/>
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativelayout_feedback_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/feedback_item_right"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+        <TextView
+                android:id="@+id/umeng_fb_reply_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/umeng_fb_item_content_size"
+                android:text="哈哈哈"/>
+
+        <TextView
+                android:id="@+id/umeng_fb_reply_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/umeng_fb_reply_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/umeng_fb_secondary_text_light"
+                android:textSize="@dimen/umeng_fb_item_time_size"/>
+
+        <ImageView
+                android:id="@+id/umeng_fb_resend"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/umeng_fb_reply_date"
+                android:layout_below="@+id/umeng_fb_reply_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/umeng_fb_reply_date"
+                android:layout_toRightOf="@+id/umeng_fb_reply_date"
+                android:contentDescription="@string/umeng_fb_send"
+                android:visibility="visible"/>
+
+        <View
+                android:id="@+id/umeng_fb_reply_item_view_line"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/umeng_fb_reply_date"
+                android:background="@color/umeng_fb_line"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+        <!-- From: file:/D:/Analytics/feedback-sdk-android/sdk/src/main/res/layout/umeng_fb_reply_item_text.xml -->

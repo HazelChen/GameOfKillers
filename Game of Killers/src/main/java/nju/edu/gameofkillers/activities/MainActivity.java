@@ -1,6 +1,5 @@
 package nju.edu.gameofkillers.activities;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -12,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.*;
 import com.umeng.fb.FeedbackAgent;
+import com.umeng.fb.fragment.FeedbackFragment;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
@@ -27,6 +27,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    private FeedbackAgent feedbackAgent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         refreshCardViews();
 
         initDrawer();
+
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void initToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -140,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
                         cardView.setAlpha(alpha);
                     } else if (event.getAction() == MotionEvent.ACTION_UP) {
                         float currentX = (x - firstTouchX) + originX;
-                        if (Math.abs(currentX - originX) >= cardView.getWidth()) {
+                        if (Math.abs(currentX - originX) >
+                                cardView.getWidth() * 0.8) {
                             GameController.removePlayer(cardView.getPlayer());
                         }
                         refreshCardViews();
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
         addDrawerListListener(drawerListView);
 
-        drawerListView.setItemChecked(1, true);
+        drawerListView.setItemChecked(0, true);
 
         initDrawerLayout();
     }
@@ -220,6 +223,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 2) {
                     Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
+                    String conversationId = new FeedbackAgent(MainActivity.this)
+                            .getDefaultConversation().getId();
+                    intent.putExtra(FeedbackFragment.BUNDLE_KEY_CONVERSATION_ID,
+                            conversationId);
                     startActivity(intent);
                 }
             }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,13 +19,16 @@ import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.controller.ImageDecoder;
 import nju.edu.gameofkillers.model.Player;
 
-public class ViewIdnetityActivity extends Activity {
+public class ViewIdnetityActivity extends AppCompatActivity {
     private int playerIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_idnetity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         playerIndex = getIntent().getExtras().getInt(Constants.KEY_PLAYER_INDEX);
 
@@ -45,10 +50,15 @@ public class ViewIdnetityActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,
-                getString(R.string.back_pressed_view_identity),
-                Toast.LENGTH_SHORT)
-                .show();
+        if (playerIndex == 0) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this,
+                    getString(R.string.back_pressed_view_identity),
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+
     }
 
     private void fillPlayerInformation() {

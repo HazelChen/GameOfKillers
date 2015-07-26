@@ -1,1 +1,1 @@
-include ':Game of Killers'
+include ':Game of Killers', ':umeng-feedback'

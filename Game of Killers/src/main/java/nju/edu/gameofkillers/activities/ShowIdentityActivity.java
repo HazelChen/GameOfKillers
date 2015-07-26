@@ -3,6 +3,8 @@ package nju.edu.gameofkillers.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,13 +16,16 @@ import nju.edu.gameofkillers.controller.Tools;
 import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.model.Player;
 
-public class ShowIdentityActivity extends Activity {
+public class ShowIdentityActivity extends AppCompatActivity {
     private int playerIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_identity);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         playerIndex = getIntent().getExtras().getInt(Constants.KEY_PLAYER_INDEX);
 

@@ -1,21 +1,20 @@
 package nju.edu.gameofkillers.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
 import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.views.NumberPickerView;
 
-public class GameSettingActivity extends Activity {
+public class GameSettingActivity extends AppCompatActivity {
     private CommonRuler commonRuler;
 
     private NumberPickerView killerNumberPicker;
@@ -27,7 +26,9 @@ public class GameSettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_setting);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView textView = (TextView) findViewById(R.id.textview_player_num);
         textView.setText(getString(R.string.player_number_show1) +

@@ -1,15 +1,13 @@
 package nju.edu.gameofkillers.activities;
 
-import android.app.Activity;
-import android.content.ContentResolver;
+import android.support.v7.widget.Toolbar;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +20,7 @@ import nju.edu.gameofkillers.controller.Tools;
 import java.io.*;
 
 
-public class AddPlayerActivity extends Activity {
+public class AddPlayerActivity extends AppCompatActivity {
     public static final String IMAGE_UNSPECIFIED = "image/*";
 
     private String headerFilePath;
@@ -32,8 +30,9 @@ public class AddPlayerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_player);
 
-        //To show left ¡û sign
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_addplayer);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         addActionListeners();
     }

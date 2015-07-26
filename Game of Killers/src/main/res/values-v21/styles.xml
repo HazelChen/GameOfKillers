@@ -2,12 +2,20 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowTranslucentStatus">true</item>
 
         <item name="android:colorPrimary">@color/theme</item>
         <item name="android:colorPrimaryDark">@color/theme600</item>
-        <item name="android:navigationBarColor">@color/theme700</item>
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="MyEditTextTheme">
+        <!-- Used for the bottom line when not selected / focused -->
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+
+        <item name="android:colorControlActivated">@color/theme</item>
+        <item name="android:colorControlHighlight">@color/theme</item>
+        <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
     </style>
 
     <!--style name="AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

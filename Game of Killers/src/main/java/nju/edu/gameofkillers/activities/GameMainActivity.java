@@ -1,8 +1,11 @@
 package nju.edu.gameofkillers.activities;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +22,7 @@ import nju.edu.gameofkillers.views.CardView;
 import java.util.List;
 
 
-public class GameMainActivity extends Activity {
+public class GameMainActivity extends AppCompatActivity {
     private RelativeLayout gameResultLayout;
     private boolean showResult;
 
@@ -27,6 +30,9 @@ public class GameMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         initPlayers();
         initHintTextView();
@@ -92,7 +98,29 @@ public class GameMainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.menu_item_replay) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getResources().getString(R.string.replay_question));
+            builder.setPositiveButton(getResources().getString(R.string.replay_yes),
+                    new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    replay();
+                }
+            });
+
+            builder.setNegativeButton(getResources().getString(R.string.replay_no),
+                    new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+        }
+
+        return true;
     }
 
     @Override
@@ -110,7 +138,7 @@ public class GameMainActivity extends Activity {
 
 
     private ImageView checkAndInitDeadImageView(ImageView deadImageView,
-                                           int width, int height) {
+                                                int width, int height) {
         if (deadImageView == null) {
             ImageView newDeadImageView = new ImageView(GameMainActivity.this);
             newDeadImageView.setImageResource(R.drawable.dead);
@@ -144,12 +172,10 @@ public class GameMainActivity extends Activity {
             Button restartButton =
                     (Button) gameResultLayout.findViewById(R.id.button_end_restart);
             restartButton.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(GameMainActivity.this,
-                            MainActivity.class);
-                    startActivity(intent);
-                    GameController.allAlive();
+                    replay();
                 }
             });
         }
@@ -158,5 +184,13 @@ public class GameMainActivity extends Activity {
                 gameResultLayout.findViewById(R.id.textview_end_winner);
         String winnerString = Tools.getIdentityName(this, winner);
         winnerTextView.setText(winnerString);
+    }
+
+    private void replay() {
+        Intent intent = new Intent(GameMainActivity.this,
+                MainActivity.class);
+        startActivity(intent);
+        GameController.allAlive();
+        finish();
     }
 }

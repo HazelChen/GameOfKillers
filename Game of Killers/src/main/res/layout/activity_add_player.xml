@@ -1,15 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools" xmlns:fab="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".activities.AddPlayerActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" xmlns:fab="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".activities.AddPlayerActivity"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_addplayer"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/theme"
+            android:title="@string/title_activity_add_player" />
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_vertical">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -66,10 +75,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="30dp"
-                    android:hint="@string/newplayer_edittext_hint"/>
+                    android:hint="@string/newplayer_edittext_hint"
+                    android:background="@drawable/edittext_style"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textColor="@android:color/black"/>
 
         </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

@@ -6,10 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import com.mail.GMailSender;
+import android.widget.Toast;
+import com.umeng.fb.fragment.FeedbackFragment;
 import nju.edu.gameofkillers.R;
+import nju.edu.gameofkillers.views.MyFeedbackFragment;
 
 public class FeedbackActivity extends AppCompatActivity {
+    private FeedbackFragment mFeedbackFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,15 @@ public class FeedbackActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_feedback);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (savedInstanceState == null) {
+            String conversation_id =
+                    getIntent().getStringExtra(FeedbackFragment.BUNDLE_KEY_CONVERSATION_ID);
+            mFeedbackFragment = FeedbackFragment.newInstance(conversation_id);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, mFeedbackFragment)
+                    .commit();
+        }
     }
 
 
@@ -34,24 +46,9 @@ public class FeedbackActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            sendFeedback();
             onBackPressed();
-            return true;
-        } else if (id == R.id.menu_item_go) {
-            sendFeedback();
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void sendFeedback() {
-        EditText contentEditText = (EditText) findViewById(R.id.edittext_feedback_content);
-        String content = contentEditText.getText().toString();
-        if (content.equals("")) {
-            return;
-        }
-
-        GMailSender mailSender = new GMailSender("442166178@qq.com", "");
-        mailSender.sendMail("", "", "", "");
+        return true;
     }
 }
