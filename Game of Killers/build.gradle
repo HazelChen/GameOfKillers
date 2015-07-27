@@ -37,4 +37,6 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.9.1'
     compile 'com.umeng:fb:5.3.0'
     compile 'com.android.support:support-v4:21.+'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
 }

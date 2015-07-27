@@ -1,5 +1,6 @@
 package nju.edu.gameofkillers.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.fragment.FeedbackFragment;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.views.MyFeedbackFragment;
@@ -26,7 +28,7 @@ public class FeedbackActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             String conversation_id =
                     getIntent().getStringExtra(FeedbackFragment.BUNDLE_KEY_CONVERSATION_ID);
-            mFeedbackFragment = FeedbackFragment.newInstance(conversation_id);
+            mFeedbackFragment = MyFeedbackFragment.newInstance(conversation_id);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, mFeedbackFragment)
                     .commit();
@@ -50,5 +52,25 @@ public class FeedbackActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        mFeedbackFragment.refresh();
+        super.onNewIntent(intent);
     }
 }

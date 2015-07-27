@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import com.umeng.analytics.MobclickAgent;
 import nju.edu.gameofkillers.R;
 
 public class BackToJudgeActivity extends AppCompatActivity {
@@ -41,5 +42,19 @@ public class BackToJudgeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
     }
 }

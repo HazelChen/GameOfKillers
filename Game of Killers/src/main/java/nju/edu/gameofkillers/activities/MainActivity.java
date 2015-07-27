@@ -10,8 +10,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.*;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.fragment.FeedbackFragment;
+import com.umeng.fb.push.FeedbackPush;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //umeng
+        FeedbackPush.getInstance(this).init(false);
+        MobclickAgent.updateOnlineConfig(this);
 
         initToolBar();
 
@@ -88,6 +94,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
     }
 
     @Override

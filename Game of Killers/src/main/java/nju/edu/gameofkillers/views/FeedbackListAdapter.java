@@ -29,23 +29,30 @@ public class FeedbackListAdapter extends a {
     public View getView(int position, View convertView, ViewGroup parent) {
         View superView = super.getView(position, convertView, parent);
 
-        Log.d("right?", "right!");
         RelativeLayout replyContentLayout =
                 (RelativeLayout) superView.findViewById(
                         R.id.relativelayout_feedback_item);
         Reply reply = replies.get(position);
 
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) replyContentLayout.getLayoutParams();
+        LinearLayout superViewLinearLayout = (LinearLayout) superView;
         if ("dev_reply".equals(reply.type)){
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-            replyContentLayout.setBackgroundResource(R.drawable.feedback_item_left);
+            superViewLinearLayout.setGravity(Gravity.START);
+            notNullSetBackgroundResource(replyContentLayout,
+                    R.drawable.feedback_item_left);
         }else {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-            replyContentLayout.setBackgroundResource(R.drawable.feedback_item_right);
+            superViewLinearLayout.setGravity(Gravity.END);
+            notNullSetBackgroundResource(replyContentLayout,
+                    R.drawable.feedback_item_right);
         }
-        replyContentLayout.setLayoutParams(layoutParams);
 
         return superView;
+    }
+
+    private void notNullSetBackgroundResource(RelativeLayout relativeLayout,
+                                              int resId) {
+        if (relativeLayout != null) {
+            relativeLayout.setBackgroundResource(resId);
+        }
     }
 
 }

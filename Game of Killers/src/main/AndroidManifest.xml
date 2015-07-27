@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -19,10 +20,10 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="YOUR_APP_KEY" />
+            android:value="55b64e6f67e58e126c0017e5" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID" />
+            android:value="beta_test" />
 
         <activity
             android:name=".activities.MainActivity"

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.umeng.analytics.MobclickAgent;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.Tools;
@@ -32,6 +33,20 @@ public class ShowIdentityActivity extends AppCompatActivity {
         fillPlayerInformation();
 
         addButtonListener();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
     }
 
     private void addButtonListener() {

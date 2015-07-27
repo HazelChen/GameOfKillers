@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+import com.umeng.analytics.MobclickAgent;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
@@ -84,5 +85,19 @@ public class GameSettingActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
     }
 }

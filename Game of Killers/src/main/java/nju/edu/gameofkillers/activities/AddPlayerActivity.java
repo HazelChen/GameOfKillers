@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import com.umeng.analytics.MobclickAgent;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.ImageDecoder;
@@ -59,6 +60,20 @@ public class AddPlayerActivity extends AppCompatActivity {
     public void onBackPressed() {
         getAndSetPlayerData();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //umeng
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //umeng
+        MobclickAgent.onPause(this);
     }
 
     @Override
