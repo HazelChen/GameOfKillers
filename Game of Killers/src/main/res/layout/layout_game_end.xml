@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#c8000000"
+                android:background="#b4000000"
                 android:id="@+id/relativelayout_end">
 
     <LinearLayout android:id="@+id/linearlayout_end_winner"
@@ -43,5 +43,15 @@
             android:background="@drawable/button_background"
             android:textSize="25sp"
             android:id="@+id/button_end_restart"/>
+
+    <Button android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/button_end_restart"
+            android:text="返回游戏"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_background"
+            android:textSize="25sp"
+            android:id="@+id/button_end_back"/>
 
 </RelativeLayout>

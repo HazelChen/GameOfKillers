@@ -1,15 +1,7 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/theme</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <style name="MyEditTextTheme">
-        <!-- Used for the bottom line when not selected / focused -->
-        <item name="colorControlNormal">@android:color/darker_gray</item>
-
-        <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
     </style>
 
 </resources>

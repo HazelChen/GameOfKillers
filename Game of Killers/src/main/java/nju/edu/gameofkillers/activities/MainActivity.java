@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import com.umeng.analytics.MobclickAgent;
@@ -166,13 +167,13 @@ public class MainActivity extends AppCompatActivity {
 
         initDrawerListAdapter(drawerListView);
 
+        drawerListView.setSelection(1);
+
         //Init drawer header
         View drawerHeader = getLayoutInflater().inflate(R.layout.drawer_header, null);
         drawerListView.addHeaderView(drawerHeader);
 
         addDrawerListListener(drawerListView);
-
-        drawerListView.setItemChecked(0, true);
 
         initDrawerLayout();
     }
@@ -226,17 +227,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class CardViewOnTouchListener implements View.OnTouchListener {
+        private GestureDetector mGestureDetector;
         private float firstTouchX;
         private float originX;
         private CardView cardView;
 
-        public CardViewOnTouchListener(CardView cardView) {
-            this.cardView = cardView;
+        public CardViewOnTouchListener(final CardView cardView) {
+            this.originX = cardView.getX();
+            mGestureDetector = new GestureDetector(MainActivity.this,
+                    new GestureDetector.OnGestureListener() {
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    firstTouchX = e.getX();
+                    return true;
+                }
+
+                @Override
+                public void onShowPress(MotionEvent e) {
+                }
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return false;
+                }
+
+                @Override
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    float currentX = distanceX + originX;
+                    cardView.setX(currentX);
+                    float alpha = 1 - Math.abs(currentX - originX) / cardView.getWidth();
+                    if (alpha < 0) {
+                        alpha = 0;
+                    }
+                    cardView.setAlpha(alpha);
+                    return false;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+
+                }
+
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                    if (Math.abs(velocityX) >
+                            cardView.getWidth() * 0.8) {
+                        GameController.removePlayer(cardView.getPlayer());
+                    }
+                    refreshCardViews();
+                    return true;
+                }
+            });
         }
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            float x = event.getX();
+            mGestureDetector.onTouchEvent(event);
+            /*float x = event.getX();
 
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 firstTouchX = x;
@@ -244,6 +291,10 @@ public class MainActivity extends AppCompatActivity {
             } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 float currentX = (x - firstTouchX) + originX;
                 cardView.setX(currentX);
+                Log.d("MainActivity",
+                        "firstTouchX: " + firstTouchX +
+                                " originX: " + originX +
+                " x: " + x + " currentX:" + currentX);
 
                 float alpha = 1 - Math.abs(currentX - originX) / cardView.getWidth();
                 if (alpha < 0) {
@@ -257,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
                     GameController.removePlayer(cardView.getPlayer());
                 }
                 refreshCardViews();
-            }
+            }*/
             return true;
         }
     }

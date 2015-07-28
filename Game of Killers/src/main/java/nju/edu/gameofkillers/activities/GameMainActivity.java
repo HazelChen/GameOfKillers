@@ -186,6 +186,7 @@ public class GameMainActivity extends AppCompatActivity {
             gameResultLayout = new RelativeLayout(GameMainActivity.this);
             LayoutInflater.from(GameMainActivity.this)
                     .inflate(R.layout.layout_game_end, gameResultLayout, true);
+
             Button restartButton =
                     (Button) gameResultLayout.findViewById(R.id.button_end_restart);
             restartButton.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +194,14 @@ public class GameMainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     replay();
+                }
+            });
+
+            Button backButton = (Button) gameResultLayout.findViewById(R.id.button_end_back);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
                 }
             });
         }

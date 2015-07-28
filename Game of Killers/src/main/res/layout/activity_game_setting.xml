@@ -11,7 +11,8 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="@color/theme"
-            android:title="@string/title_activity_game_setting" />
+            android:title="@string/title_activity_game_setting"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <ScrollView
             android:layout_width="match_parent"

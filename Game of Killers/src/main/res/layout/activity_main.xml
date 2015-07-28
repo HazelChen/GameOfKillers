@@ -16,8 +16,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:minHeight="?attr/actionBarSize"
-                android:background="@color/theme">
-        </android.support.v7.widget.Toolbar>
+                android:background="@color/theme"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
         <FrameLayout android:layout_width="match_parent"

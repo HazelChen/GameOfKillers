@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:gravity="center"
-                        android:src="@drawable/pic_grey"/>
+                        android:src="@drawable/umeng_fb_plus"/>
 
                 <Button
                         android:id="@+id/umeng_fb_send_btn"
