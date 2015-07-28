@@ -7,4 +7,10 @@
     <color name="theme700">#1976D2</color>
     <color name="theme900">#0D47A1</color>
 
+    <color name="red_dark">#B71C1C</color>
+    <color name="green_dark">#1B5E20</color>
+    <color name="yellow_dark">#F57F17</color>
+
+
+
 </resources>

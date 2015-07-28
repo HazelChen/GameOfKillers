@@ -2,7 +2,6 @@ package nju.edu.gameofkillers.activities;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +17,7 @@ import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.common.Constants;
 import nju.edu.gameofkillers.controller.CommonRuler;
 import nju.edu.gameofkillers.controller.GameController;
+import nju.edu.gameofkillers.controller.Tools;
 import nju.edu.gameofkillers.model.Player;
 import nju.edu.gameofkillers.views.CardView;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +29,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-    private FeedbackAgent feedbackAgent;
+
+    private GridLayout cardGridLayout;
 
 
     @Override
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         initToolBar();
 
         addActionListeners();
+
+        cardGridLayout = (GridLayout) findViewById(R.id.layout_cards);
+        Tools.averageGridLayoutUnderCard(this, cardGridLayout);
 
         refreshCardViews();
 
@@ -132,45 +136,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshCardViews() {
-        final GridLayout cardGridLayout = (GridLayout) findViewById(R.id.layout_cards);
         cardGridLayout.removeAllViews();
 
         List<Player> players = GameController.getPlayers();
 
         for (Player player : players) {
             final CardView cardView = new CardView(this);
-
-            cardView.setOnTouchListener(new View.OnTouchListener() {
-                private float firstTouchX;
-                private float originX;
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    float x = event.getX();
-
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        firstTouchX = x;
-                        originX = cardView.getX();
-                    } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        float currentX = (x - firstTouchX) + originX;
-                        cardView.setX(currentX);
-
-                        float alpha = 1 - Math.abs(currentX - originX) / cardView.getWidth();
-                        if (alpha < 0) {
-                            alpha = 0;
-                        }
-                        cardView.setAlpha(alpha);
-                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                        float currentX = (x - firstTouchX) + originX;
-                        if (Math.abs(currentX - originX) >
-                                cardView.getWidth() * 0.8) {
-                            GameController.removePlayer(cardView.getPlayer());
-                        }
-                        refreshCardViews();
-                    }
-                    return true;
-                }
-            });
+            cardView.setOnTouchListener(new CardViewOnTouchListener(cardView));
             cardGridLayout.addView(cardView);
             cardView.init(player);
         }
@@ -253,4 +225,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private class CardViewOnTouchListener implements View.OnTouchListener {
+        private float firstTouchX;
+        private float originX;
+        private CardView cardView;
+
+        public CardViewOnTouchListener(CardView cardView) {
+            this.cardView = cardView;
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            float x = event.getX();
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                firstTouchX = x;
+                originX = cardView.getX();
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                float currentX = (x - firstTouchX) + originX;
+                cardView.setX(currentX);
+
+                float alpha = 1 - Math.abs(currentX - originX) / cardView.getWidth();
+                if (alpha < 0) {
+                    alpha = 0;
+                }
+                cardView.setAlpha(alpha);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                float currentX = (x - firstTouchX) + originX;
+                if (Math.abs(currentX - originX) >
+                        cardView.getWidth() * 0.8) {
+                    GameController.removePlayer(cardView.getPlayer());
+                }
+                refreshCardViews();
+            }
+            return true;
+        }
+    }
 }

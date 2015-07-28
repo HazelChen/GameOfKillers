@@ -60,24 +60,26 @@ public class CardView extends FrameLayout {
         init(player);
 
         Identity identity = player.getIdentity();
-        String identityString = Tools.getIdentityName(context, identity);
 
         TextView textView = (TextView) findViewById(R.id.card_textview_identity);
         textView.setVisibility(VISIBLE);
-        textView.setText(identityString);
+        textView.setTextColor(Tools.getIdentityColor(context, identity));
+        textView.setText(Tools.getIdentityName(context, identity));
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public int getShouldWidth() {
-        View backgroundImageView = findViewById(R.id.imageview_card_background);
+    public static int getShouldWidth(Context context) {
+        CardView cardView = new CardView(context);
+        View backgroundImageView = cardView.findViewById(R.id.imageview_card_background);
         return backgroundImageView.getLayoutParams().width;
     }
 
-    public int getShouldHeight() {
-        View backgroundImageView = findViewById(R.id.imageview_card_background);
+    public static int getShouldHeight(Context context) {
+        CardView cardView = new CardView(context);
+        View backgroundImageView = cardView.findViewById(R.id.imageview_card_background);
         return backgroundImageView.getLayoutParams().height;
     }
 

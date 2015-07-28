@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.fb.push.FeedbackPush;
 import nju.edu.gameofkillers.R;
 import nju.edu.gameofkillers.controller.GameController;
 import nju.edu.gameofkillers.controller.Tools;
@@ -27,6 +26,7 @@ import java.util.List;
 public class GameMainActivity extends AppCompatActivity {
     private RelativeLayout gameResultLayout;
     private boolean showResult;
+    private GridLayout gridLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,9 @@ public class GameMainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        gridLayout = (GridLayout) findViewById(R.id.layout_game_main_cards);
+        Tools.averageGridLayoutUnderCard(this, gridLayout);
 
         initPlayers();
         initHintTextView();
@@ -75,8 +78,6 @@ public class GameMainActivity extends AppCompatActivity {
     }
 
     private void initPlayers() {
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.layout_game_main_cards);
-
         List<Player> players = GameController.getPlayers();
 
         for (final Player player : players) {
@@ -94,8 +95,8 @@ public class GameMainActivity extends AppCompatActivity {
 
                     //If player is not dead.
                     deadImageView = checkAndInitDeadImageView(deadImageView,
-                            cardView.getShouldWidth(),
-                            cardView.getShouldHeight());
+                            CardView.getShouldWidth(GameMainActivity.this),
+                            CardView.getShouldHeight(GameMainActivity.this));
                     cardView.addView(deadImageView);
                     player.setIsDead(true);
                     checkGameStatusAndReaction();
