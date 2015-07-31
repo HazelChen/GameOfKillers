@@ -2,7 +2,6 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              tools:context="nju.edu.gameofkillers.activities.GameSettingActivity"
               android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -53,7 +52,7 @@
                         android:text="@string/killer_number_hint"
                         android:textColor="@android:color/black"/>
 
-                <nju.edu.gameofkillers.views.NumberPickerView
+                <com.hedwig.gameofkillers.views.NumberPickerView
                         android:id="@+id/numberpicker_killernum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -71,7 +70,7 @@
                         android:layout_below="@id/textview_killer_num_hint"
                         android:textColor="@android:color/black"/>
 
-                <nju.edu.gameofkillers.views.NumberPickerView
+                <com.hedwig.gameofkillers.views.NumberPickerView
                         android:id="@+id/numberpicker_policenum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -89,7 +88,7 @@
                         android:layout_below="@id/textview_police_num_hint"
                         android:textColor="@android:color/black"/>
 
-                <nju.edu.gameofkillers.views.NumberPickerView
+                <com.hedwig.gameofkillers.views.NumberPickerView
                         android:id="@+id/numberpicker_civiliannum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

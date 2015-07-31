@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Game of Killers/Game of Killers.iml" filepath="$PROJECT_DIR$/Game of Killers/Game of Killers.iml" />
       <module fileurl="file://$PROJECT_DIR$/GameofKillers.iml" filepath="$PROJECT_DIR$/GameofKillers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/umeng-feedback/umeng-feedback.iml" filepath="$PROJECT_DIR$/umeng-feedback/umeng-feedback.iml" />
     </modules>
   </component>
 </project>
