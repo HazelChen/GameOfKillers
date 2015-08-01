@@ -18,7 +18,7 @@ import com.hedwig.gameofkillers.model.Identity;
 import com.hedwig.gameofkillers.model.Player;
 import com.hedwig.gameofkillers.views.CardView;
 import com.umeng.analytics.MobclickAgent;
-import com.hedwig.gameofkillers.R;;
+import com.hedwig.gameofkillers.R;
 
 import java.util.List;
 
@@ -176,6 +176,7 @@ public class GameMainActivity extends AppCompatActivity {
 
             FrameLayout gameMainFrameLayout =
                     (FrameLayout) findViewById(R.id.framelayout_game_main);
+            gameMainFrameLayout.removeView(gameResultLayout);
             gameMainFrameLayout.addView(gameResultLayout);
             showResult = true;
         }
